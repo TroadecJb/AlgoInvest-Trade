@@ -38,20 +38,15 @@ ACTIONS = [
 
 def main():
     ACTIONS_sorted = sorted(ACTIONS, key=lambda e: e[0])
-
     dicActions = converters.listToDict(ACTIONS_sorted)
-
-    portefeuilles = portfolios.createPFfromDict(dicActions, 500)
-
     portefeuilles = portfolios.createPFfromDict(dicActions, 500)
     portefeuillesSorted = rateCalculators.sortBySumReturns(portefeuilles)
-
     return portefeuillesSorted
 
 
-# n = 10
-# results = timeit.timeit(stmt="main()", globals=globals(), number=n)
-# print(f"{results / n} secondes")
+n = 10
+results = timeit.timeit(stmt="main()", globals=globals(), number=n)
+print(f"{results / n} secondes")
 
 x = main()
 print("longueur liste main :", len(x))
