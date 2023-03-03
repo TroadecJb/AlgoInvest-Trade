@@ -2,7 +2,7 @@ import timeit
 from controllers import converters, portfoliosCreator
 
 
-dataset = converters.csvToList("DATA/dataset1.csv")
+dataset = converters.csvToList("DATA/datatest.csv")
 
 
 def bruteForce(data, budget):
@@ -16,7 +16,7 @@ def bruteForce(data, budget):
 # results = timeit.timeit(stmt="bruteForce(dataset, 500)", globals=globals(), number=n)
 # print(f"{results / n} secondes")
 
-test_Datatest = bruteForce(dataset, 30)
+test_Datatest = bruteForce(dataset, 500)
 print("longueur liste main :", len(test_Datatest))
 # for pf in test_Datatest[:30]:
 #     print(pf)
