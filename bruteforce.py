@@ -1,55 +1,22 @@
 import timeit
-import itertools
-import pprint
-from functions import converters, portfolios, rateCalculators
-
-ACTIONS = [
-    (20, 5),
-    (30, 10),
-    (50, 15),
-    (40, 20),
-    (60, 17),
-    (80, 25),
-    (22, 7),
-    (26, 11),
-    (48, 13),
-    (34, 27),
-    (42, 17),
-    (110, 9),
-    (38, 23),
-    (14, 1),
-    (18, 3),
-    (8, 8),
-    (4, 12),
-    (10, 14),
-    (24, 21),
-    (114, 18),
-]
-
-# ACTIONS_sorted = sorted(ACTIONS, key=lambda e: e[0])
-
-# dicActions = converters.listToDict(ACTIONS_sorted)
-
-# portefeuilles = portfolios.createPFfromDict(dicActions, 500)
-
-# firstItems = portefeuilles[:30]
-# firstItemsReturn = rateCalculators.rateReturnDict(portefeuilles[:30])
+from controllers import converters, portfoliosCreator
 
 
-def main():
-    ACTIONS_sorted = sorted(ACTIONS, key=lambda e: e[0])
-    dicActions = converters.listToDict(ACTIONS_sorted)
-    portefeuilles = portfolios.createPFfromDict(dicActions, 500)
-    portefeuillesSorted = rateCalculators.sortBySumReturns(portefeuilles)
+dataset = converters.csvToList("DATA/dataset1.csv")
+
+
+def bruteForce(data, budget):
+    # create portfolio instances form list, sort them by gain in descendig order
+    portefeuilles = portfoliosCreator.portfoliosCombinations(dataset, budget)
+    portefeuillesSorted = sorted(portefeuilles, key=lambda pf: pf.gain, reverse=True)
     return portefeuillesSorted
 
 
-n = 10
-results = timeit.timeit(stmt="main()", globals=globals(), number=n)
-print(f"{results / n} secondes")
+# n = 10
+# results = timeit.timeit(stmt="bruteForce(dataset, 500)", globals=globals(), number=n)
+# print(f"{results / n} secondes")
 
-x = main()
-print("longueur liste main :", len(x))
-# print(x[:20])
-
-pprint.pprint(x[:10])
+test_Datatest = bruteForce(dataset, 30)
+print("longueur liste main :", len(test_Datatest))
+# for pf in test_Datatest[:30]:
+#     print(pf)

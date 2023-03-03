@@ -1,2 +1,4 @@
 .vscode
 test.py
+.DATA
+__pycache__/
