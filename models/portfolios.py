@@ -17,3 +17,25 @@ class Portfolio:
 
     def __repr__(self) -> str:
         return f"{self.name} Buy cost : {self.price}, Gain : {self.gain}\n {[share.name for share in self.listShares]}\n"
+
+
+class PortfolioAlt:
+    # class for a portfolio, containing a list of shares. With total purchase cost, total value after two years and total gain.
+
+    def __init__(self, listShares) -> None:
+        self.listShares = listShares
+        self.price = 0
+        self.value = 0
+        self.gain = 0
+
+    def __repr__(self) -> str:
+        return f"Buy cost : {self.price}, Value : {self.value}, Gain : {self.gain}\n {[share.name for share in self.listShares]}"
+
+    def getPrice(self):
+        self.price = sum([share.price for share in self.listShares])
+
+    def getValue(self):
+        self.value = sum([share.value for share in self.listShares])
+
+    def getGain(self):
+        self.gain = sum([share.gain for share in self.listShares])
