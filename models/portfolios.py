@@ -4,8 +4,8 @@ class Portfolio:
     def __init__(self, name, listShares: tuple) -> None:
         self.name = name
         self.listShares = listShares
-        self.price = sum([share.price for share in self.listShares])
-        self.gain = sum([share.gain for share in self.listShares])
+        self.price = round((sum([share.price for share in self.listShares])), 2)
+        self.gain = round((sum([share.gain for share in self.listShares])), 2)
 
     # def getPrice(self) -> float:
     #     # return the price to acquire each shares in the listShares
