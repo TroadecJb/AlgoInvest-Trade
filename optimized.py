@@ -2,14 +2,11 @@ import timeit
 from controllers import portfoliosCreator, converters
 
 
-# dataset = converters.csvToListAlt("DATA/dataset1.csv")
-
-
-def optimized(budget):
+def optimized(data, budget, filter="rate"):
     # create a portofolio instance from list
-    dataset = converters.csvToListAlt("DATA/dataset2.csv")
+    dataset = converters.csvToListAlt(data, filter)
 
-    portfolio = portfoliosCreator.portfoliosOptimized(dataset, 500)
+    portfolio = portfoliosCreator.portfoliosOptimized(dataset, budget)
 
     portfolio.getGain()
     portfolio.getValue()
@@ -18,12 +15,14 @@ def optimized(budget):
     return portfolio
 
 
-optimized_pf = optimized(500)
+dataset = "DATA/dataset1.csv"
+
+optimized_pf = optimized(dataset, 500, "gain")
 
 print("\n", optimized_pf)
 # print(len(optimized_pf.listShares))
 
 
-n = 30
-results = timeit.timeit(stmt="optimized(500)", globals=globals(), number=n)
+n = 100000
+results = timeit.timeit(stmt="optimized_pf", globals=globals(), number=n)
 print(f"{results / n} secondes")
