@@ -32,10 +32,10 @@ class PortfolioAlt:
         return f"Buy cost : {self.price}, Value : {self.value}, Gain : {self.gain}\n {[share.name for share in self.listShares]}"
 
     def getPrice(self):
-        self.price = sum([share.price for share in self.listShares])
+        self.price = round(sum([share.price for share in self.listShares]), 2)
 
     def getValue(self):
-        self.value = sum([share.value for share in self.listShares])
+        self.value = round((sum([share.value for share in self.listShares])), 2)
 
     def getGain(self):
-        self.gain = sum([share.gain for share in self.listShares])
+        self.gain = round(sum([share.gain for share in self.listShares]), 2)

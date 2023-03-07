@@ -2,25 +2,21 @@ import timeit
 from controllers import portfoliosCreator, converters
 
 
-def optimized(data, budget, filter="rate"):
+def optimized(data, budget):
     # create a portofolio instance from list
-    dataset = converters.csvToListAlt(data, filter)
+    dataset = converters.csvToListAlt(data)
 
-    portfolio = portfoliosCreator.portfoliosOptimized(dataset, budget)
+    best_portfolio = portfoliosCreator.portfoliosOptimizedAlt(dataset, budget)
 
-    portfolio.getGain()
-    portfolio.getValue()
-    portfolio.getPrice()
-
-    return portfolio
+    return best_portfolio
 
 
-dataset = "DATA/dataset1.csv"
+dataset = "DATA/dataset2.csv"
 
-optimized_pf = optimized(dataset, 500, "gain")
 
-print("\n", optimized_pf)
-# print(len(optimized_pf.listShares))
+optimized_pf = optimized(dataset, 500)
+
+print(optimized_pf)
 
 
 n = 100000
