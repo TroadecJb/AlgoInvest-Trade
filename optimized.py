@@ -7,7 +7,7 @@ from controllers import portfoliosCreator, converters
 
 def optimized(budget):
     # create a portofolio instance from list
-    dataset = converters.csvToListAlt("DATA/dataset1.csv")
+    dataset = converters.csvToListAlt("DATA/dataset2.csv")
 
     portfolio = portfoliosCreator.portfoliosOptimized(dataset, 500)
 

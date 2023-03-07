@@ -15,14 +15,15 @@ def portfoliosCombinations(liste: list, budget) -> list:
 
 
 def portfoliosOptimized(liste: list, budget) -> portfolios:
-    list_shares = liste[:]
+    # return a portfolio instance with a list of share instance where the total purchase cost is within the limit of a budget
+
     remaining_budget = budget
-    min_share_price = list_shares[0].price
+    min_share_price = liste[0].price
     potential_portfolio = portfolios.PortfolioAlt([])
 
     while remaining_budget > min_share_price:
         available_shares = list(
-            filter(lambda share: share.price <= remaining_budget, list_shares)
+            filter(lambda share: share.price <= remaining_budget, liste)
         )
         # make the only available shares have a price lower than the remaining budget thus purchasable
         try:
@@ -31,28 +32,6 @@ def portfoliosOptimized(liste: list, budget) -> portfolios:
             break
         remaining_budget -= elem.price
         potential_portfolio.listShares.append(elem)
-        list_shares.remove(elem)
+        liste.remove(elem)
 
     return potential_portfolio
-
-
-# def portfoliosOptimized(liste: list, budget) -> portfolios:
-#     list_shares = liste[:]
-#     remaining_budget = budget
-#     min_share_price = list_shares[0].price
-#     potential_portfolio = portfolios.PortfolioAlt([])
-
-#     while remaining_budget > min_share_price:
-#         available_shares = list(
-#             filter(lambda share: share.price <= remaining_budget, list_shares)
-#         )
-#         # make the only available shares have a price lower than the remaining budget thus purchasable
-#         try:
-#             elem = available_shares[-1]
-#         except IndexError:
-#             break
-#         remaining_budget -= elem.price
-#         potential_portfolio.listShares.append(elem)
-#         list_shares.remove(elem)
-
-#     return potential_portfolio

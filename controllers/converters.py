@@ -18,7 +18,7 @@ def csvToList(pathToFile) -> list:
 
 
 def csvToListAlt(pathToFile) -> list:
-    # returns a list of share's class instances sorted by gain
+    # returns a list of share's class instances sorted by rate/gain/value
 
     dataset = list()
     with open(pathToFile, mode="r") as file:
@@ -26,25 +26,7 @@ def csvToListAlt(pathToFile) -> list:
         next(data)
         dataset = sorted(
             [
-                shares.ShareAlt(row[0], float(row[1]), float(row[2]))
-                for row in data
-                if float(row[1]) > 0 and float(row[2]) > 0
-            ],
-            key=lambda i: i.gain,
-        )
-    return dataset
-
-
-def csvToListAltBis(pathToFile) -> list:
-    # returns a list of share's class instances sorted by rate
-
-    dataset = list()
-    with open(pathToFile, mode="r") as file:
-        data = csv.reader(file, delimiter=",")
-        next(data)
-        dataset = sorted(
-            [
-                shares.ShareAlt(row[0], float(row[1]), float(row[2]))
+                shares.Share(row[0], float(row[1]), float(row[2]))
                 for row in data
                 if float(row[1]) > 0 and float(row[2]) > 0
             ],
