@@ -1,21 +1,17 @@
-import timeit
-import psutil
-import optimized, bruteforce
+import time
+import bruteforce, optimized
+
+dataset = "DATA/datatest.csv"
+brute_force_pf = bruteforce.bruteForce(dataset, 500)
 
 
-dataset = "DATA/dataset2.csv"
-data_brute_force = "DATA/datatest.csv"
-
-# optimized_pf = optimized.optimized(dataset, 500)
-# brute_force_pf = bruteforce.bruteForce(data_brute_force, 500)
+# dataset = "DATA/datatest.csv"
+optimized_pf = optimized.optimized(dataset, 500)
 
 
-print(psutil.cpu_percent(interval=1))
+#### process timer and print results
+results = time.process_time()
+print(f"\nTimer : {results} secondes")
 
-# n = 100
-# results = timeit.timeit(stmt="optimized_pf", globals=globals(), number=n)
-# print(f"{results / n} secondes")
-
-# n = 10
-# results = timeit.timeit(stmt="brute_force_pf", globals=globals(), number=n)
-# print(f"{results / n} secondes")
+print(optimized_pf)
+print(brute_force_pf)

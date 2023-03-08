@@ -1,9 +1,9 @@
-from controllers import portfoliosCreator, converters
+from controllers import portfoliosCreator, converters, rateCalculators
 
 
 def bruteForce(data, budget):
     # create portfolio instance from list, sort them by gain in descendig order
-    dataset = converters.csvToListAlt(data)
+    dataset = converters.csvToList(data)
     portefeuilles = portfoliosCreator.portfoliosCombinations(dataset, budget)
-    portefeuillesSorted = sorted(portefeuilles, key=lambda pf: pf.gain, reverse=True)
-    return portefeuillesSorted[0]
+
+    return portefeuilles

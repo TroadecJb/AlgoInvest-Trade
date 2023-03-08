@@ -2,22 +2,28 @@ import csv
 from models import shares
 
 
-def csvToList(pathToFile) -> list:
-    # returns a list of share's class instances.
+def listToDict(liste: list) -> dict:
+    # returns a dictionnary from a list where every elements is a tuple/list of two subelements
+    dico = dict()
+    for idx, e in enumerate(liste):
+        dico[f"action-{idx+1}"] = [e[0], e[1]]
 
-    dataset = list()
+    return dico
+
+
+def csvToDict(pathToFile) -> dict:
+    # returns a dictionnary from a csv
+    dico = dict()
     with open(pathToFile, mode="r") as file:
         data = csv.reader(file, delimiter=",")
         next(data)
-        dataset = [
-            shares.Share(row[0], float(row[1]), float(row[2]))
-            for row in data
-            if float(row[1]) > 0
-        ]
-    return dataset
+        for idx, l in enumerate(data):
+            dico[f"action-{idx+1}"] = [float(l[1]), float(l[2])]
+
+    return dico
 
 
-def csvToListAlt(pathToFile) -> list:
+def csvToList(pathToFile) -> list:
     # returns a list of share's class instances sorted by rate/gain/value
 
     dataset = list()

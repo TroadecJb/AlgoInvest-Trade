@@ -2,9 +2,9 @@ import random
 import string
 import csv
 
-with open("DATA/datatestlong1.csv", mode="w") as file:
+with open("DATA/datatestmoyen.csv", mode="w") as file:
     data = csv.writer(file, delimiter=",")
-    for i in range(100_001):
+    for i in range(101):
         data.writerow(
             [
                 "Share-" + "".join(random.choices(string.ascii_uppercase, k=4)),
