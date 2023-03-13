@@ -8,7 +8,7 @@ class Portfolio:
         self.gain = 0
 
     def __repr__(self) -> str:
-        return f"Buy cost : {self.price}, Value : {self.value}, Gain : {self.gain}\n {[share.name for share in self.listShares]}"
+        return f"\nBuy cost : {self.price}, Value : {self.value}, Gain : {self.gain}\n {[share.name for share in self.listShares]}\n"
 
     def getPrice(self):
         self.price = round(sum([share.price for share in self.listShares]), 2)
