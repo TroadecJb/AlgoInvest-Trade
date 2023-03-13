@@ -1,17 +1,16 @@
 import time
-import psutil
-import os
 from memory_profiler import profile
 from controllers import bruteforce, optimized
 
 
-dataset = "DATA/datatest.csv"
+dataset = "DATA/dataset1.csv"
 
 start = time.perf_counter()
 
+
 # @profile
-# def BF():
-#     return bruteforce.bruteForce(dataset, 100)
+def BF():
+    return bruteforce.bruteForce(dataset, 500)
 
 
 @profile
@@ -19,8 +18,8 @@ def Opti():
     return optimized.optimized(dataset, 500)
 
 
-# print(BF())
-print(Opti())
-
 end = time.perf_counter()
 print(end - start)
+
+# print(BF())
+print(Opti())
