@@ -1,13 +1,23 @@
-import timeit
+import time
+import resource
 from controllers import algos
 
-dataset = "DATA/dataset1.csv"
+dataset = "DATA/dataset2.csv"
 budget = 500
+
+before_ram = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+
+start = time.time()
 
 algo_opti = algos.optimized(dataset, budget)
 
-loop = 1_000_000
-result = timeit.timeit("algo_opti", globals=globals(), number=loop)
-print(f"Timer : {result / loop} seconds")
+after_ram = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+ram_usage = after_ram - before_ram
+memory = ram_usage / 1024
+
+print(f"Memory usage of algo_opti: {memory} KB")
+end = time.time()
+
+print(f"Timer : {end - start} seconds")
 
 print(algo_opti)

@@ -37,18 +37,6 @@ def portfolio_BF(liste: list, budget, portfolio=[]):
         return round(sum([share[2] for share in portfolio]), 2), portfolio
 
 
-def createPFfromDict(dictActions: dict, budget: int) -> list:
-    # returns all combinations of a list which sum are under the budget
-
-    combos = [
-        pf
-        for i in range(1, len(dictActions) + 1)
-        for pf in map(dict, itertools.combinations(dictActions.items(), i))
-    ]
-
-    return combos
-
-
 def portfoliosOptimized(liste: list, budget) -> portfolios:
     ### return a portfolio instance with a list of share instance where the total purchase cost is within the limit of a budget
     ###
